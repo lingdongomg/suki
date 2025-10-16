@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定格、时间和小鼠 | Suki + Partners</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="brand">Suki + Partners</div>
+      <nav>
+        <a href="index.html">首页</a>
+        <a href="works.html">作品</a>
+        <a href="about.html">关于我们</a>
+        <a href="contact.html">联系我们</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h2>定格、时间和小鼠</h2>
+      <div class="gallery mt-s">
+        <img src="../images/定格、时间和小鼠/定格、时间和小鼠_1_思和朋友们工作室_来自小红书网页版.jpg" alt="1">
+        <img src="../images/定格、时间和小鼠/定格、时间和小鼠_2_思和朋友们工作室_来自小红书网页版.jpg" alt="2">
+        <img src="../images/定格、时间和小鼠/定格、时间和小鼠_3_思和朋友们工作室_来自小红书网页版.jpg" alt="3">
+        <img src="../images/定格、时间和小鼠/定格、时间和小鼠_4_思和朋友们工作室_来自小红书网页版.jpg" alt="4">
+        <img src="../images/定格、时间和小鼠/定格、时间和小鼠_5_思和朋友们工作室_来自小红书网页版.jpg" alt="5">
+        <img src="../images/定格、时间和小鼠/定格、时间和小鼠_6_思和朋友们工作室_来自小红书网页版.jpg" alt="6">
+        <img src="../images/定格、时间和小鼠/定格、时间和小鼠_7_思和朋友们工作室_来自小红书网页版.jpg" alt="7">
+        <img src="../images/定格、时间和小鼠/定格、时间和小鼠_8_思和朋友们工作室_来自小红书网页版.jpg" alt="8">
+      </div>
+    </div>
+  </section>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <span class="close">×</span>
+    <img id="lightbox-img" alt="预览">
+  </div>
+
+  <footer>
+    <div class="container footer-inner">© 2025 Suki + Partners 婚礼策划工作室 | 用自然语言叙述爱的仪式</div>
+  </footer>
+<script>
+  (function() {
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    document.addEventListener('click', function(e) {
+      const img = e.target.closest('.gallery img');
+      if (img) {
+        e.preventDefault();
+        lbImg.src = img.src;
+        lb.classList.add('open');
+      }
+    });
+    lb.addEventListener('click', function(e) {
+      if (e.target === lb || e.target.classList.contains('close')) {
+        lb.classList.remove('open');
+        lbImg.removeAttribute('src');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') lb.classList.remove('open');
+    });
+  })();
+</script>
+</body>
+</html>

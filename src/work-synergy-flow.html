@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>“共生”———流动的生命力 | Suki + Partners</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="brand">Suki + Partners</div>
+      <nav>
+        <a href="index.html">首页</a>
+        <a href="works.html">作品</a>
+        <a href="about.html">关于我们</a>
+        <a href="contact.html">联系我们</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h2>“共生”———流动的生命力</h2>
+      <div class="gallery mt-s">
+        <!-- 自动生成的全部图片 -->
+        <img src="../images/“共生”———流动的生命力/“共生”———流动的生命力_1_思和朋友们工作室_来自小红书网页版.jpg" alt="“共生”———流动的生命力 1">
+        <img src="../images/“共生”———流动的生命力/“共生”———流动的生命力_2_思和朋友们工作室_来自小红书网页版.jpg" alt="“共生”———流动的生命力 2">
+        <img src="../images/“共生”———流动的生命力/“共生”———流动的生命力_3_思和朋友们工作室_来自小红书网页版.jpg" alt="“共生”———流动的生命力 3">
+        <img src="../images/“共生”———流动的生命力/“共生”———流动的生命力_4_思和朋友们工作室_来自小红书网页版.jpg" alt="“共生”———流动的生命力 4">
+        <img src="../images/“共生”———流动的生命力/“共生”———流动的生命力_5_思和朋友们工作室_来自小红书网页版.jpg" alt="“共生”———流动的生命力 5">
+        <img src="../images/“共生”———流动的生命力/“共生”———流动的生命力_6_思和朋友们工作室_来自小红书网页版.jpg" alt="“共生”———流动的生命力 6">
+        <img src="../images/“共生”———流动的生命力/“共生”———流动的生命力_7_思和朋友们工作室_来自小红书网页版.jpg" alt="“共生”———流动的生命力 7">
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">© 2025 Suki + Partners 婚礼策划工作室 | 用自然语言叙述爱的仪式</div>
+  </footer>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <span class="close" id="lbClose">×</span>
+    <img id="lbImg" alt="">
+  </div>
+  <script>
+    (function(){
+      const lb = document.getElementById('lightbox'), img = document.getElementById('lbImg'), close = document.getElementById('lbClose');
+      document.querySelectorAll('.gallery img').forEach(el=>{
+        el.addEventListener('click',()=>{ img.src = el.src; lb.classList.add('open'); });
+      });
+      const hide=()=>lb.classList.remove('open');
+      lb.addEventListener('click',e=>{ if(e.target===lb||e.target===close) hide(); });
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape') hide(); });
+    })();
+  </script>
+</body>
+</html>

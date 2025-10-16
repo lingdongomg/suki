@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>继续生长吧，像树一样 | Suki + Partners</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="brand">Suki + Partners</div>
+      <nav>
+        <a href="index.html">首页</a>
+        <a href="works.html">作品</a>
+        <a href="about.html">关于我们</a>
+        <a href="contact.html">联系我们</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h2>继续生长吧，像树一样</h2>
+      <div class="gallery mt-s">
+        <img src="../images/继续生长吧，像树一样/继续生长吧，像树一样_1_思和朋友们工作室_来自小红书网页版.jpg" alt="1">
+        <img src="../images/继续生长吧，像树一样/继续生长吧，像树一样_2_思和朋友们工作室_来自小红书网页版.jpg" alt="2">
+        <img src="../images/继续生长吧，像树一样/继续生长吧，像树一样_3_思和朋友们工作室_来自小红书网页版.jpg" alt="3">
+        <img src="../images/继续生长吧，像树一样/继续生长吧，像树一样_4_思和朋友们工作室_来自小红书网页版.jpg" alt="4">
+        <img src="../images/继续生长吧，像树一样/继续生长吧，像树一样_5_思和朋友们工作室_来自小红书网页版.jpg" alt="5">
+        <img src="../images/继续生长吧，像树一样/继续生长吧，像树一样_6_思和朋友们工作室_来自小红书网页版.jpg" alt="6">
+        <img src="../images/继续生长吧，像树一样/继续生长吧，像树一样_7_思和朋友们工作室_来自小红书网页版.jpg" alt="7">
+        <img src="../images/继续生长吧，像树一样/继续生长吧，像树一样_8_思和朋友们工作室_来自小红书网页版.jpg" alt="8">
+        <img src="../images/继续生长吧，像树一样/继续生长吧，像树一样_9_思和朋友们工作室_来自小红书网页版.jpg" alt="9">
+        <img src="../images/继续生长吧，像树一样/继续生长吧，像树一样_10_思和朋友们工作室_来自小红书网页版.jpg" alt="10">
+        <img src="../images/继续生长吧，像树一样/继续生长吧，像树一样_11_思和朋友们工作室_来自小红书网页版.jpg" alt="11">
+      </div>
+      <div class="mt-m">
+        <p>他们说:“我们没有这场婚礼也生活的很幸福，希望这场婚礼可以传递爱，帮助我们分享爱...”</p>
+        <p>他们有很多相似的点，日常生活喜好关于冥想和喝茶，能感受到他们认真的生活在当下和探寻自己。</p>
+        <p>场地在夕上虎跑，一个三面被非常高大的原生的树区包裹的一个方形草坪...</p>
+        <p>顺着这个方向，我们消隐掉设计，简单的白色的五米高的背景墙，像画布一样展现一棵树的轮廓和姿态...</p>
+        <p>从他们亲手种下这棵树这一刻，婚礼不再是一个即时性的仪式的纪念，而是依托这个生命的载体...</p>
+        <p>婚礼策划团队@思和朋友们 | 设计@suuuki</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <span class="close">×</span>
+    <img id="lightbox-img" alt="预览">
+  </div>
+
+  <footer>
+    <div class="container footer-inner">© 2025 Suki + Partners 婚礼策划工作室 | 用自然语言叙述爱的仪式</div>
+  </footer>
+<script>
+  (function() {
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    document.addEventListener('click', function(e) {
+      const img = e.target.closest('.gallery img');
+      if (img) {
+        e.preventDefault();
+        lbImg.src = img.src;
+        lb.classList.add('open');
+      }
+    });
+    lb.addEventListener('click', function(e) {
+      if (e.target === lb || e.target.classList.contains('close')) {
+        lb.classList.remove('open');
+        lbImg.removeAttribute('src');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') lb.classList.remove('open');
+    });
+  })();
+</script>
+</body>
+</html>
