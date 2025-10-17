@@ -1,99 +1,435 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Suki + Partners 婚礼策划工作室</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>思和朋友们 Suki + Partners - 婚礼策划与空间叙事</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="new/detail-style.css">
+    <style>
+        /* Custom Styles */
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('images/继续生长吧，像树一样/继续生长吧，像树一样_1_思和朋友们工作室_来自小红书网页版.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            border-radius: 8px;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            border-radius: 8px;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+        
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #D4D2CD;
+            background: transparent;
+            color: #4A4A4A;
+            cursor: pointer;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #8B9D83;
+            color: white;
+            border-color: #8B9D83;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .animation-delay-200 {
+            animation-delay: 0.2s;
+        }
+        
+        .animation-delay-400 {
+            animation-delay: 0.4s;
+        }
+        
+        .animation-delay-600 {
+            animation-delay: 0.6s;
+        }
+        
+        #navbar.transparent {
+            background: transparent;
+        }
+        
+        #navbar {
+            background: rgba(250, 248, 245, 0.98);
+            backdrop-filter: blur(10px);
+        }
+        
+        #back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .success-message {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #8B9D83;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 9999;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .success-message.show {
+            transform: translateX(0);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FAF8F5',
+                        sage: '#8B9D83',
+                        stone: '#D4D2CD',
+                        charcoal: '#4A4A4A'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="home">
-  <header>
-    <div class="container header-inner">
-      <div class="brand">Suki + Partners</div>
-      <nav>
-        <a href="index.html">首页</a>
-        <a href="works.html">作品</a>
-        <a href="about.html">关于我们</a>
-        <a href="contact.html">联系我们</a>
-      </nav>
-    </div>
-  </header>
+<body class="font-sans bg-cream text-charcoal">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="container mx-auto px-6 lg:px-12 py-6">
+            <div class="flex items-center justify-between">
+                <div class="logo font-serif text-xl tracking-wide">
+                    <a href="#home" class="nav-link">Suki + Partners</a>
+                </div>
+                <div class="hidden md:flex space-x-10">
+                    <a href="#home" class="nav-link text-sm tracking-widest uppercase hover:text-sage transition-colors">首页</a>
+                    <a href="#portfolio" class="nav-link text-sm tracking-widest uppercase hover:text-sage transition-colors">作品</a>
+                    <a href="#about" class="nav-link text-sm tracking-widest uppercase hover:text-sage transition-colors">关于</a>
+                    <a href="#contact" class="nav-link text-sm tracking-widest uppercase hover:text-sage transition-colors">联系</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream/98 backdrop-blur-sm border-t border-stone/30">
+            <div class="container mx-auto px-6 py-6 flex flex-col space-y-4">
+                <a href="#home" class="nav-link text-sm tracking-widest uppercase hover:text-sage transition-colors">首页</a>
+                <a href="#portfolio" class="nav-link text-sm tracking-widest uppercase hover:text-sage transition-colors">作品</a>
+                <a href="#about" class="nav-link text-sm tracking-widest uppercase hover:text-sage transition-colors">关于</a>
+                <a href="#contact" class="nav-link text-sm tracking-widest uppercase hover:text-sage transition-colors">联系</a>
+            </div>
+        </div>
+    </nav>
 
-  <section class="section" style="padding-top: 0rem; padding-bottom: 0rem;">
-    <div class="container">
-      <div class="slider">
-        <ul class="slide-track" id="slideTrack" aria-label="精选作品轮播">
-          <!-- 覆盖为所有主题，封面均用 _1.jpg -->
-          <li class="slide"><a href="work-tree.html" class="slide-link"><img class="slide-img" src="images/继续生长吧，像树一样/继续生长吧，像树一样_1_思和朋友们工作室_来自小红书网页版.jpg" alt="继续生长吧，像树一样"><span class="slide-title">继续生长吧，像树一样</span></a></li>
-          <li class="slide"><a href="work-playground.html" class="slide-link"><img class="slide-img" src="images/记忆与游乐场/记忆与游乐场_1_思和朋友们工作室_来自小红书网页版.jpg" alt="记忆与游乐场"><span class="slide-title">记忆与游乐场</span></a></li>
-          <li class="slide"><a href="work-pole-collage.html" class="slide-link"><img class="slide-img" src="images/电线杆-电线-拼贴诗/电线杆-电线-拼贴诗_1_思和朋友们工作室_来自小红书网页版.jpg" alt="电线杆·电线·拼贴诗"><span class="slide-title">电线杆·电线·拼贴诗</span></a></li>
-          <li class="slide"><a href="work-freeze-time-mouse.html" class="slide-link"><img class="slide-img" src="images/定格、时间和小鼠/定格、时间和小鼠_1_思和朋友们工作室_来自小红书网页版.jpg" alt="定格、时间和小鼠"><span class="slide-title">定格、时间和小鼠</span></a></li>
-          <li class="slide"><a href="work-emotion-space.html" class="slide-link"><img class="slide-img" src="images/空间是情感意识的显化/空间是情感意识的显化_1_思和朋友们工作室_来自小红书网页版.jpg" alt="空间是情感意识的显化"><span class="slide-title">空间是情感意识的显化</span></a></li>
-          <li class="slide"><a href="work-summer-structure.html" class="slide-link"><img class="slide-img" src="images/舒展的夏日架构/舒展的夏日架构_1_思和朋友们工作室_来自小红书网页版.jpg" alt="舒展的夏日架构"><span class="slide-title">舒展的夏日架构</span></a></li>
-          <li class="slide"><a href="work-no-ritual-wedding.html" class="slide-link"><img class="slide-img" src="images/一场没有仪式的婚礼/一场没有仪式的婚礼_福1015婚礼_1_思和朋友们工作室_来自小红书网页版.jpg" alt="一场没有仪式的婚礼"><span class="slide-title">一场没有仪式的婚礼</span></a></li>
-          <li class="slide"><a href="work-synergy-flow.html" class="slide-link"><img class="slide-img" src="images/“共生”———流动的生命力/“共生”———流动的生命力_1_思和朋友们工作室_来自小红书网页版.jpg" alt="“共生”———流动的生命力"><span class="slide-title">“共生”———流动的生命力</span></a></li>
-          <li class="slide"><a href="work-micro-moments.html" class="slide-link"><img class="slide-img" src="images/爱是不连续的微小瞬间/爱是不连续的微小瞬间_1_思和朋友们工作室_来自小红书网页版.jpg" alt="爱是不连续的微小瞬间"><span class="slide-title">爱是不连续的微小瞬间</span></a></li>
-          <li class="slide"><a href="work-white-green-volume.html" class="slide-link"><img class="slide-img" src="images/白绿色系的体块与空间感/白绿色系的体块与空间感_阿纳迪和合厅_1_思和朋友们工作室_来自小红书网页版.jpg" alt="白绿色系的体块与空间感"><span class="slide-title">白绿色系的体块与空间感</span></a></li>
-          <li class="slide"><a href="work-time-together.html" class="slide-link"><img class="slide-img" src="images/希望我们能享受彼此相伴的每一段时光/希望我们能享受彼此相伴的每一段时光_1_思和朋友们工作室_来自小红书网页版.jpg" alt="希望我们能享受彼此相伴的每一段时光"><span class="slide-title">希望我们能享受彼此相伴的每一段时光</span></a></li>
-          <li class="slide"><a href="work-mountain-wedding.html" class="slide-link"><img class="slide-img" src="images/野在山川婚礼/野在山川婚礼__人物篇_1_思和朋友们工作室_来自小红书网页版.jpg" alt="野在山川婚礼"><span class="slide-title">野在山川婚礼</span></a></li>
-          <li class="slide"><a href="work-wind-valley.html" class="slide-link"><img class="slide-img" src="images/与自然与山谷中的风同频/与自然与山谷中的风同频_1_思和朋友们工作室_来自小红书网页版.jpg" alt="与自然与山谷中的风同频"><span class="slide-title">与自然与山谷中的风同频</span></a></li>
-        </ul>
-          <button class="slider-btn left" aria-label="向左">‹</button>
-          <button class="slider-btn right" aria-label="向右">›</button>
-      </div>
-    </div>
-  </section>
+    <!-- 首页 Hero Section -->
+    <section id="home" class="min-h-screen relative flex items-center justify-center overflow-hidden">
+        <div class="hero-bg absolute inset-0"></div>
+        <div class="hero-overlay absolute inset-0 bg-charcoal/20"></div>
+        <div class="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl mb-8 animate-fade-in-up font-light tracking-wide">
+                思和朋友们
+            </h1>
+            <p class="text-base md:text-lg mb-4 font-light tracking-widest animate-fade-in-up animation-delay-200 uppercase">
+                Suki + Partners
+            </p>
+            <p class="text-lg md:text-xl mb-12 font-light leading-relaxed animate-fade-in-up animation-delay-400 opacity-90">
+                自然 · 优雅 · 纯净 的婚礼策划与空间叙事
+            </p>
+            <a href="#portfolio" class="inline-block border border-white/80 text-white px-10 py-4 text-sm tracking-widest uppercase hover:bg-white hover:text-charcoal transition-all duration-300 animate-fade-in-up animation-delay-600">
+                探索作品
+            </a>
+        </div>
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-white text-2xl opacity-60"></i>
+        </div>
+    </section>
 
-  <footer>
-    <div class="container footer-inner">© 2025 Suki + Partners 婚礼策划工作室 | 用自然语言叙述爱的仪式</div>
-  </footer>
+    <!-- 作品展示 -->
+    <section id="portfolio" class="py-24 lg:py-32">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-20">
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 font-light">作品</h2>
+                <p class="text-stone text-base tracking-wide">每一场婚礼，都是一次独特的空间叙事</p>
+            </div>
 
-  <script>
-    (function() {
-      const track = document.getElementById('slideTrack');
-      const getSlides = () => Array.from(track.querySelectorAll('.slide'));
-      function applyPositions() {
-        const slides = getSlides();
-        slides.forEach(s => s.className = 'slide');
-        if (!slides.length) return;
-        slides[0].classList.add('center');
-        if (slides[1]) slides[1].classList.add('right1');
-        if (slides[2]) slides[2].classList.add('right2');
-        if (slides[slides.length-1]) slides[slides.length-1].classList.add('left1');
-        if (slides[slides.length-2]) slides[slides.length-2].classList.add('left2');
-        for (let i = 3; i < slides.length-2; i++) { if (slides[i]) slides[i].classList.add('off'); }
-      }
-      function rotateLeft() {
-        const slides = getSlides();
-        if (slides.length > 1) {
-          track.insertBefore(slides[slides.length - 1], slides[0]);
-          applyPositions();
-        }
-      }
-      function rotateRight() {
-        const slides = getSlides();
-        if (slides.length > 1) {
-          track.appendChild(slides[0]);
-          applyPositions();
-        }
-      }
-      let timer=null;
-      const startLeft = ()=>{ stop(); timer=setInterval(rotateLeft, 1000); };
-      const startRight= ()=>{ stop(); timer=setInterval(rotateRight, 1000); };
-      const stop = ()=>{ if(timer){ clearInterval(timer); timer=null; } };
-      track.addEventListener('mouseover', e=>{
-        const item=e.target.closest('.slide'); if(!item) return;
-        if(item.classList.contains('left1')||item.classList.contains('left2')) startLeft();
-        else if(item.classList.contains('right1')||item.classList.contains('right2')) startRight();
-        else stop();
-      });
-      track.addEventListener('mouseleave', stop);
-      applyPositions();
-      const btnLeft = document.querySelector('.slider-btn.left');
-      const btnRight = document.querySelector('.slider-btn.right');
-      if (btnLeft) btnLeft.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); rotateLeft(); });
-      if (btnRight) btnRight.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); rotateRight(); });
-    })();
-  </script>
+            <!-- 作品分类标签 -->
+            <div class="flex flex-wrap justify-center gap-6 mb-16">
+                <button class="filter-btn active text-sm tracking-widest uppercase transition-all" data-filter="all">全部</button>
+                <button class="filter-btn text-sm tracking-widest uppercase transition-all" data-filter="indoor">室内</button>
+                <button class="filter-btn text-sm tracking-widest uppercase transition-all" data-filter="outdoor">户外</button>
+                <button class="filter-btn text-sm tracking-widest uppercase transition-all" data-filter="floral">花艺</button>
+            </div>
+
+            <!-- 作品网格 -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+                <!-- 作品项将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-24 lg:py-32 bg-white">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-20">
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 font-light">关于我们</h2>
+                <p class="text-stone text-base tracking-wide">思和朋友们 Suki + Partners</p>
+            </div>
+
+            <div class="max-w-5xl mx-auto">
+                <!-- 主要介绍 -->
+                <div class="mb-20">
+                    <div class="prose prose-lg max-w-none">
+                        <p class="text-charcoal/80 text-lg md:text-xl leading-loose mb-8 font-light">
+                            思和朋友们 Suki + Partners 是一间位于上海的多元设计工作室，工作范围主要是婚礼策划，包括空间装置与花艺设计。专注于小众、自然、诗意婚礼策划与设计。
+                        </p>
+                        <p class="text-charcoal/80 text-lg md:text-xl leading-loose mb-8 font-light">
+                            我们通过视觉呈现传递你们的感受，并帮助建立对话。我们希望探索多界融合的新领域，探寻个人特征与仪式的原始意义。
+                        </p>
+                        <p class="text-charcoal/80 text-lg md:text-xl leading-loose font-light">
+                            空间、花艺、建筑、场域、装置、平面传达等被整合为整体，以多种材质与形态来创作、传达信息，寻找与空间精神相契合的表达，保持生野。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 设计理念 -->
+                <div class="border-t border-stone/30 pt-20">
+                    <h3 class="font-serif text-3xl md:text-4xl mb-12 text-center font-light">设计理念</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                                <div class="w-16 h-16 border border-sage/40 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-leaf text-sage text-2xl"></i>
+                                </div>
+                            </div>
+                            <h4 class="text-xl mb-4 tracking-wide">自然与诗艺</h4>
+                            <p class="text-charcoal/70 leading-relaxed font-light">
+                                以自然为内核，用诗意的方式呈现空间，让每一个细节都充满生命力与温度
+                            </p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                                <div class="w-16 h-16 border border-sage/40 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-circle text-sage text-xs"></i>
+                                </div>
+                            </div>
+                            <h4 class="text-xl mb-4 tracking-wide">克制与留白</h4>
+                            <p class="text-charcoal/70 leading-relaxed font-light">
+                                以克制的材质与充足留白，呈现具有时间温度与情感深度的现场
+                            </p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                                <div class="w-16 h-16 border border-sage/40 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-pen-fancy text-sage text-2xl"></i>
+                                </div>
+                            </div>
+                            <h4 class="text-xl mb-4 tracking-wide">定制化叙事</h4>
+                            <p class="text-charcoal/70 leading-relaxed font-light">
+                                专注定制化婚礼策划，让每一场婚礼都成为独特的空间叙事
+                            </p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                                <div class="w-16 h-16 border border-sage/40 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-heart text-sage text-2xl"></i>
+                                </div>
+                            </div>
+                            <h4 class="text-xl mb-4 tracking-wide">纯净表达</h4>
+                            <p class="text-charcoal/70 leading-relaxed font-light">
+                                让爱以更纯净的方式被看见，用最真实的情感打动人心
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-24 lg:py-32">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-20">
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 font-light">联系我们</h2>
+                <p class="text-stone text-base tracking-wide">与我们联系，共同定制你的专属婚礼</p>
+            </div>
+
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                    <!-- 工作室介绍 -->
+                    <div>
+                        <div class="mb-12">
+                            <p class="text-charcoal/80 text-lg leading-loose mb-6 font-light">
+                                我们相信，婚礼不仅是一场仪式，更是一种关于爱与生活方式的表达。
+                            </p>
+                            <p class="text-charcoal/80 text-lg leading-loose mb-6 font-light">
+                                我们擅长通过自然材料与空间叙事，打造具有时间温度与情感深度的婚礼现场。
+                            </p>
+                            <p class="text-charcoal/80 text-lg leading-loose font-light">
+                                总设计师 Suki 致力于探索人与自然、仪式与情感之间的平衡，用心捕捉每一份真实的爱意。
+                            </p>
+                        </div>
+
+                        <!-- 联系方式 -->
+                        <div class="space-y-8 pt-8 border-t border-stone/30">
+                            <div>
+                                <h4 class="text-sm tracking-widest uppercase mb-3 text-charcoal/60">邮箱</h4>
+                                <a href="mailto:siqinnn@foxmail.com" class="text-lg hover:text-sage transition-colors">
+                                    siqinnn@foxmail.com
+                                </a>
+                            </div>
+                            <div>
+                                <h4 class="text-sm tracking-widest uppercase mb-3 text-charcoal/60">小红书</h4>
+                                <a href="https://www.xiaohongshu.com/user/profile/5e7f8c5e000000000100a8c9" target="_blank" class="text-lg hover:text-sage transition-colors">
+                                    @思和朋友们工作室
+                                </a>
+                            </div>
+                            <div>
+                                <h4 class="text-sm tracking-widest uppercase mb-3 text-charcoal/60">婚礼范围</h4>
+                                <p class="text-lg">不限(海内外均可)</p>
+                            </div>
+                        </div>
+
+                        <!-- 社交媒体 -->
+                        <div class="mt-12 pt-8 border-t border-stone/30">
+                            <div class="flex space-x-6">
+                                <a href="https://www.xiaohongshu.com/user/profile/5e7f8c5e000000000100a8c9" target="_blank" class="w-12 h-12 border border-stone/40 flex items-center justify-center hover:border-sage hover:text-sage transition-all" title="小红书">
+                                    <i class="fas fa-bookmark text-lg"></i>
+                                </a>
+                                <a href="#" target="_blank" class="w-12 h-12 border border-stone/40 flex items-center justify-center hover:border-sage hover:text-sage transition-all" title="Instagram">
+                                    <i class="fab fa-instagram text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 联系表单 -->
+                    <div class="bg-white p-10 lg:p-12">
+                        <h3 class="font-serif text-2xl mb-8 font-light">预约咨询</h3>
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm tracking-wide mb-3 text-charcoal/60">新郎姓名</label>
+                                    <input type="text" name="groom" required class="w-full px-0 py-3 border-0 border-b border-stone/40 focus:outline-none focus:border-sage transition-colors bg-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm tracking-wide mb-3 text-charcoal/60">新娘姓名</label>
+                                    <input type="text" name="bride" required class="w-full px-0 py-3 border-0 border-b border-stone/40 focus:outline-none focus:border-sage transition-colors bg-transparent">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm tracking-wide mb-3 text-charcoal/60">联系电话</label>
+                                <input type="tel" name="phone" required class="w-full px-0 py-3 border-0 border-b border-stone/40 focus:outline-none focus:border-sage transition-colors bg-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm tracking-wide mb-3 text-charcoal/60">婚礼日期</label>
+                                <input type="date" name="date" required class="w-full px-0 py-3 border-0 border-b border-stone/40 focus:outline-none focus:border-sage transition-colors bg-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm tracking-wide mb-3 text-charcoal/60">婚礼类型</label>
+                                <select name="type" required class="w-full px-0 py-3 border-0 border-b border-stone/40 focus:outline-none focus:border-sage transition-colors bg-transparent">
+                                    <option value="">请选择</option>
+                                    <option value="indoor">室内婚礼</option>
+                                    <option value="outdoor">户外婚礼</option>
+                                    <option value="destination">目的地婚礼</option>
+                                    <option value="other">其他</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm tracking-wide mb-3 text-charcoal/60">留言</label>
+                                <textarea name="message" rows="4" class="w-full px-0 py-3 border-0 border-b border-stone/40 focus:outline-none focus:border-sage transition-colors bg-transparent resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full border border-charcoal text-charcoal py-4 text-sm tracking-widest uppercase hover:bg-charcoal hover:text-white transition-all duration-300 mt-8">
+                                提交预约
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 底部文字 -->
+                <div class="text-center mt-20 pt-16 border-t border-stone/30">
+                    <p class="text-charcoal/70 text-lg font-light leading-relaxed">
+                        我们期待与你一起创造独属于你的婚礼叙事
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-white py-12 border-t border-stone/30">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center">
+                <div class="font-serif text-xl mb-4 tracking-wide">Suki + Partners</div>
+                <p class="text-charcoal/60 text-sm tracking-widest">思和朋友们</p>
+                <p class="text-charcoal/40 text-xs mt-6">&copy; 2024 Suki + Partners. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 border border-charcoal/20 text-charcoal opacity-0 pointer-events-none transition-all hover:border-sage hover:text-sage">
+        <i class="fas fa-arrow-up text-sm"></i>
+    </button>
+
+    <script src="portfolio-data.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
