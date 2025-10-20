@@ -128,21 +128,63 @@ function initBackToTop() {
 // 表单提交处理
 function initContactForm() {
     const form = document.getElementById('contact-form');
-    if (!form) return;
+    const messageDiv = document.getElementById('form-message');
+    if (!form || !messageDiv) return;
     
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         // 获取表单数据
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
         
-        // 这里可以添加实际的表单提交逻辑
-        console.log('表单数据:', data);
+        // 显示加载状态
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = '发送中...';
+        submitButton.disabled = true;
+        messageDiv.className = 'mt-4 text-sm hidden';
         
-        // 显示成功消息
-        alert('感谢您的预约！我们会尽快与您联系。');
-        form.reset();
+        try {
+            // 发送到API
+            const response = await fetch('https://sukipartners.com/api/v1/contact-messages', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    topic: data.topic,
+                    message: data.message,
+                    timestamp: new Date().toISOString(),
+                    source: 'website-form'
+                })
+            });
+            
+            if (response.ok) {
+                // 成功提交
+                messageDiv.textContent = '感谢您的分享！我们会认真阅读您的留言。';
+                messageDiv.className = 'mt-4 text-sm text-green-600';
+                form.reset();
+            } else {
+                // 服务器错误
+                throw new Error(`服务器错误: ${response.status}`);
+            }
+        } catch (error) {
+            console.error('表单提交错误:', error);
+            messageDiv.textContent = '发送失败，请稍后重试或直接发送邮件至 siqinnn@foxmail.com';
+            messageDiv.className = 'mt-4 text-sm text-red-600';
+        } finally {
+            // 恢复按钮状态
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+            
+            // 3秒后隐藏消息
+            setTimeout(() => {
+                messageDiv.className = 'mt-4 text-sm hidden';
+            }, 3000);
+        }
     });
 }
 
