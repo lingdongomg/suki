@@ -1,4 +1,47 @@
 // Real Portfolio Data - 思和朋友们工作室真实作品
+
+// WebP格式支持函数
+function getWebPImagePath(originalPath) {
+    if (!originalPath) return originalPath;
+    return originalPath.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+}
+
+// 获取最佳图片路径（支持WebP的浏览器使用WebP，否则使用原格式）
+function getOptimalImagePath(originalPath) {
+    if (!originalPath) return originalPath;
+    
+    // 检查浏览器是否支持WebP
+    const supportsWebP = () => {
+        const canvas = document.createElement('canvas');
+        if (canvas.getContext && canvas.getContext('2d')) {
+            return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+        }
+        return false;
+    };
+    
+    if (supportsWebP()) {
+        return getWebPImagePath(originalPath);
+    }
+    return originalPath;
+}
+
+// 处理作品数据中的图片路径
+function processPortfolioImages(portfolioItem) {
+    const processedItem = { ...portfolioItem };
+    
+    // 处理封面图片
+    processedItem.coverImage = getOptimalImagePath(portfolioItem.coverImage);
+    processedItem.coverImageWebP = getWebPImagePath(portfolioItem.coverImage);
+    processedItem.coverImageOriginal = portfolioItem.coverImage;
+    
+    // 处理详情图片
+    processedItem.images = portfolioItem.images.map(img => getOptimalImagePath(img));
+    processedItem.imagesWebP = portfolioItem.images.map(img => getWebPImagePath(img));
+    processedItem.imagesOriginal = [...portfolioItem.images];
+    
+    return processedItem;
+}
+
 const portfolioData = [
     {
         id: 1,

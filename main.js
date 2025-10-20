@@ -1,5 +1,5 @@
 // 作品渲染函数
-function renderPortfolio(filter = 'all') {
+async function renderPortfolio(filter = 'all') {
     const grid = document.getElementById('portfolio-grid');
     if (!grid) return;
     
@@ -9,12 +9,22 @@ function renderPortfolio(filter = 'all') {
         ? portfolioData 
         : portfolioData.filter(item => item.category === filter);
     
+    // 检查WebP支持
+    const webPSupported = await WebPSupport.supportsWebP();
+    
     filteredData.forEach((item, index) => {
         const portfolioItem = document.createElement('div');
         portfolioItem.className = 'portfolio-item';
         portfolioItem.style.animationDelay = `${index * 0.1}s`;
+        
+        // 根据WebP支持选择图片路径
+        const imagePath = webPSupported 
+            ? item.coverImage.replace(/\.(jpg|jpeg|png)$/i, '.webp')
+            : item.coverImage;
+        
         portfolioItem.innerHTML = `
-            <img src="${item.coverImage}" alt="${item.title}" loading="lazy">
+            <img src="${imagePath}" alt="${item.title}" loading="lazy" 
+                 onerror="if(this.src !== '${item.coverImage}') this.src='${item.coverImage}'">
             <div class="portfolio-overlay">
                 <h3 class="font-serif text-2xl text-white mb-2">${item.title}</h3>
                 <p class="text-white/80 text-sm font-light">${item.description}</p>

@@ -1,5 +1,5 @@
 // Portfolio Detail Page Script
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // Get portfolio ID from URL
     const urlParams = new URLSearchParams(window.location.search);
     const portfolioId = parseInt(urlParams.get('id'));
@@ -12,14 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
     
-    // Render portfolio details
-    renderPortfolioDetails(portfolio);
+    // Check WebP support
+    const webPSupported = await WebPSupport.supportsWebP();
     
-    // Initialize lightbox
-    initLightbox(portfolio.images);
+    // Render portfolio details with WebP support
+    renderPortfolioDetails(portfolio, webPSupported);
+    
+    // Initialize lightbox with WebP support
+    initLightbox(portfolio.images, webPSupported);
 });
 
-function renderPortfolioDetails(portfolio) {
+function renderPortfolioDetails(portfolio, webPSupported) {
     // Title
     document.getElementById('portfolio-title').textContent = portfolio.title;
     
@@ -47,10 +50,15 @@ function renderPortfolioDetails(portfolio) {
     `;
     document.getElementById('portfolio-description').innerHTML = descriptionHTML;
     
-    // Gallery
-    const galleryHTML = portfolio.images.map((img, index) => `
+    // Gallery - Convert image paths to WebP if supported
+    const galleryImages = webPSupported 
+        ? portfolio.images.map(img => img.replace(/\.(jpg|jpeg|png)$/i, '.webp'))
+        : portfolio.images;
+    
+    const galleryHTML = galleryImages.map((img, index) => `
         <div class="gallery-item" data-index="${index}">
-            <img src="${img}" alt="${portfolio.title} ${index + 1}" loading="lazy">
+            <img src="${img}" alt="${portfolio.title} ${index + 1}" loading="lazy"
+                 onerror="if(this.src !== '${portfolio.images[index]}') this.src='${portfolio.images[index]}'">
         </div>
     `).join('');
     document.getElementById('gallery-grid').innerHTML = galleryHTML;
@@ -81,8 +89,11 @@ function getCategoryName(category) {
 let currentImageIndex = 0;
 let images = [];
 
-function initLightbox(portfolioImages) {
-    images = portfolioImages;
+function initLightbox(portfolioImages, webPSupported) {
+    // Convert image paths to WebP if supported
+    images = webPSupported 
+        ? portfolioImages.map(img => img.replace(/\.(jpg|jpeg|png)$/i, '.webp'))
+        : portfolioImages;
     
     const lightbox = document.getElementById('lightbox');
     const closeBtn = document.getElementById('lightbox-close');
