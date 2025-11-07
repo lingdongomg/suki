@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 在路上 - Suki+Partners</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: url('new/SP网页图片素材/P1-P2（封面与介绍）/背景（也是所有页面的背景）.png') fixed center/cover;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8B9D83;
+        }
+
+        .project-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .project-title-image {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-decoration {
+            max-width: 200px;
+            margin: 40px auto;
+        }
+
+        .side-decoration {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 180px;
+            z-index: 10;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        .single-image {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .single-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .two-column img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .three-column img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .decoration-image {
+            max-width: 400px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .decoration-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .framed-image {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .frame-decoration {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .frame-top {
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: #8B9D83;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 1024px) {
+            .side-decoration {
+                display: none;
+            }
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            .three-column {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-container {
+                padding: 100px 20px 60px;
+            }
+            .three-column {
+                grid-template-columns: 1fr;
+            }
+            .back-button {
+                bottom: 20px;
+                left: 20px;
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+            .nav-bar {
+                padding: 15px 20px;
+            }
+            .nav-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                gap: 20px;
+                font-size: 14px;
+            }
+        }
+
+        .content-section img {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="nav-logo">Suki+Partners</div>
+            <div class="nav-links">
+                <a href="index.html#home">首页</a>
+                <a href="index.html#catalog">作品</a>
+                <a href="index.html#about">关于</a>
+                <a href="index.html#contact">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="side-decoration">
+        <img src="new/SP网页图片素材/P13-P18（03在路上）/P13-右侧竖图.png" alt="装饰">
+    </div>
+
+    <div class="project-container">
+        <!-- 项目头部 -->
+        <div class="project-header">
+            <img src="new/SP网页图片素材/P13-P18（03在路上）/P13-沙漏.jpg" alt="在路上" class="project-title-image">
+            <div class="project-decoration">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P13-插画.png" alt="装饰">
+            </div>
+        </div>
+
+        <!-- P14 - 6张图片网格 -->
+        <div class="content-section">
+            <div class="three-column">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P14-1.jpg" alt="在路上-1">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P14-2.jpg" alt="在路上-2">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P14-3.jpg" alt="在路上-3">
+            </div>
+            <div class="three-column">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P14-4.jpg" alt="在路上-4">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P14-5.jpg" alt="在路上-5">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P14-6.jpg" alt="在路上-6">
+            </div>
+        </div>
+
+        <!-- P15 - 裁剪图片 -->
+        <div class="content-section">
+            <div class="two-column">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P15-2（裁剪上半张）.png" alt="在路上-7">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P15-3（裁剪下半张）.png" alt="在路上-8">
+            </div>
+        </div>
+
+        <!-- P16 - 带装饰边框的图片 -->
+        <div class="content-section">
+            <div class="single-image">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P16-1.png" alt="在路上-9">
+            </div>
+            <div class="decoration-image">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P16-插画1（16-1边框）.png" alt="装饰边框">
+            </div>
+            
+            <div class="two-column">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P16-2（裁剪成正方形）.png" alt="在路上-10">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P16-3（裁剪成正方形）.png" alt="在路上-11">
+            </div>
+            <div class="decoration-image">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P16-插画2（两张方形图边框）.png" alt="装饰边框">
+            </div>
+            
+            <div class="single-image">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P16-4.png" alt="在路上-12">
+            </div>
+            <div class="decoration-image">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P16-插画3（16-4边框）.png" alt="装饰边框">
+            </div>
+            
+            <div class="decoration-image">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P16-插画4（线条）.png" alt="装饰线条">
+            </div>
+        </div>
+
+        <!-- P17 - 4张图片 -->
+        <div class="content-section">
+            <div class="two-column">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P17-1.png" alt="在路上-13">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P17-2.png" alt="在路上-14">
+            </div>
+            <div class="two-column">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P17-3.png" alt="在路上-15">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P17-4.png" alt="在路上-16">
+            </div>
+        </div>
+
+        <!-- P18 - 多张图片网格 + 装饰 -->
+        <div class="content-section">
+            <div class="three-column">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P18-1.png" alt="在路上-17">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P18-2.png" alt="在路上-18">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P18-3.png" alt="在路上-19">
+            </div>
+            <div class="decoration-image">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P18-插画1.png" alt="装饰">
+            </div>
+            
+            <div class="two-column">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P18-4.png" alt="在路上-20">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P18-5.png" alt="在路上-21">
+            </div>
+            <div class="decoration-image">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P18-插画2.png" alt="装饰">
+            </div>
+            
+            <div class="two-column">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P18-6.png" alt="在路上-22">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P18-7.png" alt="在路上-23">
+            </div>
+            <div class="decoration-image">
+                <img src="new/SP网页图片素材/P13-P18（03在路上）/P18-插画3.png" alt="装饰">
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html#catalog" class="back-button">← 返回作品集</a>
+
+    <script>
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+        });
+
+        const images = document.querySelectorAll('img');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '0';
+                    img.style.transition = 'opacity 0.5s';
+                    setTimeout(() => {
+                        img.style.opacity = '1';
+                    }, 100);
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => {
+            imageObserver.observe(img);
+        });
+    </script>
+</body>
+</html>

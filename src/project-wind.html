@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 与风同频 - Suki+Partners</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: url('new/SP网页图片素材/P1-P2（封面与介绍）/背景（也是所有页面的背景）.png') fixed center/cover;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8B9D83;
+        }
+
+        .project-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .project-title-image {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-decoration {
+            max-width: 200px;
+            margin: 40px auto;
+        }
+
+        .side-decoration {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 180px;
+            z-index: 10;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        .single-image {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .single-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .two-column img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .three-column img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .five-column {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .five-column img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .decoration-image {
+            max-width: 400px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .decoration-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .logo-section {
+            max-width: 600px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .logo-section img {
+            max-width: 200px;
+            margin: 20px;
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: #8B9D83;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 1024px) {
+            .side-decoration {
+                display: none;
+            }
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            .three-column {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .five-column {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-container {
+                padding: 100px 20px 60px;
+            }
+            .three-column, .five-column {
+                grid-template-columns: 1fr;
+            }
+            .back-button {
+                bottom: 20px;
+                left: 20px;
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+            .nav-bar {
+                padding: 15px 20px;
+            }
+            .nav-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                gap: 20px;
+                font-size: 14px;
+            }
+        }
+
+        .content-section img {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="nav-logo">Suki+Partners</div>
+            <div class="nav-links">
+                <a href="index.html#home">首页</a>
+                <a href="index.html#catalog">作品</a>
+                <a href="index.html#about">关于</a>
+                <a href="index.html#contact">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="side-decoration">
+        <img src="new/SP网页图片素材/P19-P23（04与风同频）/P19-右侧竖图.png" alt="装饰">
+    </div>
+
+    <div class="project-container">
+        <!-- 项目头部 -->
+        <div class="project-header">
+            <img src="new/SP网页图片素材/P19-P23（04与风同频）/P19-与风同频.png" alt="与风同频" class="project-title-image">
+            <div class="project-decoration">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P19-插画.png" alt="装饰">
+            </div>
+        </div>
+
+        <!-- P20 - 10张小图网格 -->
+        <div class="content-section">
+            <div class="five-column">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P20-1.png" alt="与风同频-1">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P20-2.png" alt="与风同频-2">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P20-3.png" alt="与风同频-3">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P20-4.png" alt="与风同频-4">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P20-5.png" alt="与风同频-5">
+            </div>
+            <div class="five-column">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P20-6.png" alt="与风同频-6">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P20-7.png" alt="与风同频-7">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P20-8.png" alt="与风同频-8">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P20-9.png" alt="与风同频-9">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P20-10.png" alt="与风同频-10">
+            </div>
+        </div>
+
+        <!-- P21 - 2张图片 -->
+        <div class="content-section">
+            <div class="two-column">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P21-1（只取上半张）.png" alt="与风同频-11" style="object-fit: cover; object-position: top; height: 400px;">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P21-2.jpg" alt="与风同频-12">
+            </div>
+        </div>
+
+        <!-- P22 - 6张图片 + Logo + 装饰 -->
+        <div class="content-section">
+            <div class="three-column">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P22-1.png" alt="与风同频-13">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P22-2.png" alt="与风同频-14">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P22-3.png" alt="与风同频-15">
+            </div>
+            
+            <div class="logo-section">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P22-logo.png" alt="Logo">
+            </div>
+            
+            <div class="three-column">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P22-4.png" alt="与风同频-16">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P22-5.png" alt="与风同频-17">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P22-6.png" alt="与风同频-18">
+            </div>
+            
+            <div class="decoration-image">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P22-插画.png" alt="装饰">
+            </div>
+        </div>
+
+        <!-- P23 - 7张图片网格 -->
+        <div class="content-section">
+            <div class="three-column">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P23-1.png" alt="与风同频-19">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P23-2.png" alt="与风同频-20">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P23-3.png" alt="与风同频-21">
+            </div>
+            <div class="two-column">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P23-4.png" alt="与风同频-22">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P23-5.png" alt="与风同频-23">
+            </div>
+            <div class="two-column">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P23-6.png" alt="与风同频-24">
+                <img src="new/SP网页图片素材/P19-P23（04与风同频）/P23-7.png" alt="与风同频-25">
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html#catalog" class="back-button">← 返回作品集</a>
+
+    <script>
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+        });
+
+        const images = document.querySelectorAll('img');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '0';
+                    img.style.transition = 'opacity 0.5s';
+                    setTimeout(() => {
+                        img.style.opacity = '1';
+                    }, 100);
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => {
+            imageObserver.observe(img);
+        });
+    </script>
+</body>
+</html>
