@@ -1,0 +1,578 @@
+/**
+ * Main Styles - Suki+Partners
+ * 首页专用样式
+ * 依赖: design-tokens.css
+ */
+
+/* ========================================
+ * 基础重置与全局样式
+ * ======================================== */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-primary);
+    background: url('../assets/images/background.png') fixed center/cover;
+    overflow-x: hidden;
+}
+
+/* 无障碍：焦点样式 */
+:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+}
+
+/* ========================================
+ * 通用布局组件
+ * ======================================== */
+
+.page-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl) var(--space-md);
+    position: relative;
+}
+
+.content-wrapper {
+    max-width: var(--container-max);
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ========================================
+ * 导航栏
+ * ======================================== */
+
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-bg-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: var(--space-5) var(--space-lg);
+    z-index: var(--z-fixed);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-normal);
+}
+
+.nav-bar.scrolled {
+    box-shadow: var(--shadow-md);
+}
+
+.nav-content {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-wider);
+    color: var(--color-text-primary);
+    transition: color var(--transition-fast);
+}
+
+.nav-logo:hover {
+    color: var(--color-primary-500);
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--space-lg);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    letter-spacing: var(--letter-spacing-wide);
+    padding: var(--space-2) var(--space-1);
+    position: relative;
+    transition: color var(--transition-fast);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary-500);
+    transition: all var(--transition-normal);
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover {
+    color: var(--color-primary-600);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ========================================
+ * 封面页
+ * ======================================== */
+
+.cover-page {
+    text-align: center;
+    animation: fadeIn var(--duration-slower) var(--ease-out);
+}
+
+.cover-illustration {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto var(--space-lg);
+    animation: floatUp var(--duration-slow) var(--ease-out);
+}
+
+.cover-illustration img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(var(--shadow-lg));
+}
+
+.logo-section {
+    margin-top: var(--space-xl);
+    animation: fadeIn var(--duration-slower) var(--ease-out) 0.3s both;
+}
+
+.logo-section img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    transition: transform var(--transition-slow);
+}
+
+.logo-section img:hover {
+    transform: scale(1.02);
+}
+
+/* 滚动提示 */
+.scroll-hint {
+    position: absolute;
+    bottom: var(--space-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s var(--ease-in-out) infinite;
+    cursor: pointer;
+}
+
+.scroll-hint::after {
+    content: '↓';
+    font-size: var(--font-size-xl);
+    color: var(--color-text-tertiary);
+    transition: color var(--transition-fast);
+}
+
+.scroll-hint:hover::after {
+    color: var(--color-primary-500);
+}
+
+/* ========================================
+ * 介绍页
+ * ======================================== */
+
+.intro-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+}
+
+.intro-text {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-loose);
+    color: var(--color-text-secondary);
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.intro-text h2 {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--space-md);
+    color: var(--color-text-primary);
+    letter-spacing: var(--letter-spacing-wider);
+}
+
+.intro-text p {
+    margin-bottom: var(--space-md);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp var(--duration-slow) var(--ease-out) forwards;
+}
+
+.intro-text p:nth-child(2) { animation-delay: 0.1s; }
+.intro-text p:nth-child(3) { animation-delay: 0.2s; }
+.intro-text p:nth-child(4) { animation-delay: 0.3s; }
+
+.intro-illustration {
+    text-align: center;
+}
+
+.intro-illustration img {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    transition: transform var(--transition-slow);
+}
+
+.intro-illustration img:hover {
+    transform: scale(1.03) rotate(1deg);
+}
+
+/* ========================================
+ * 目录页 / 作品集
+ * ======================================== */
+
+.catalog-page {
+    text-align: center;
+}
+
+.catalog-title {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-light);
+    margin-bottom: var(--space-2xl);
+    letter-spacing: var(--letter-spacing-widest);
+    color: var(--color-text-primary);
+    position: relative;
+}
+
+.catalog-title::after {
+    content: '';
+    position: absolute;
+    bottom: calc(-1 * var(--space-4));
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-primary-400), transparent);
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.catalog-item {
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius-lg);
+    transition: transform var(--transition-normal);
+}
+
+.catalog-item:hover {
+    transform: translateY(-8px);
+}
+
+.catalog-item:focus-visible {
+    outline-offset: 4px;
+}
+
+.catalog-item-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    transition: box-shadow var(--transition-normal);
+}
+
+.catalog-item:hover .catalog-item-image {
+    box-shadow: var(--shadow-xl);
+}
+
+.catalog-item-shadow {
+    position: absolute;
+    bottom: calc(-1 * var(--space-5));
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 30px;
+    opacity: 0.25;
+    transition: opacity var(--transition-normal);
+}
+
+.catalog-item:hover .catalog-item-shadow {
+    opacity: 0.35;
+}
+
+.catalog-item-title {
+    margin-top: var(--space-md);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-normal);
+    letter-spacing: var(--letter-spacing-wider);
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.catalog-item:hover .catalog-item-title {
+    color: var(--color-primary-600);
+}
+
+.catalog-illustration {
+    margin-top: var(--space-xl);
+}
+
+.catalog-illustration img {
+    max-width: 300px;
+    width: 100%;
+    opacity: 0.85;
+    transition: opacity var(--transition-normal), transform var(--transition-slow);
+}
+
+.catalog-illustration img:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* ========================================
+ * 页脚
+ * ======================================== */
+
+.footer {
+    text-align: center;
+    padding: var(--space-xl) var(--space-md);
+    background: var(--color-bg-glass);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.footer-illustration {
+    max-width: 400px;
+    margin: 0 auto var(--space-lg);
+}
+
+.footer-illustration img {
+    width: 100%;
+    transition: transform var(--transition-slow);
+}
+
+.footer-illustration img:hover {
+    transform: scale(1.02);
+}
+
+.footer-text {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+}
+
+.footer-text p {
+    margin-bottom: var(--space-2);
+}
+
+.footer-contact {
+    margin-top: var(--space-md);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+}
+
+.footer-contact p {
+    margin-bottom: var(--space-2);
+}
+
+.footer-contact a {
+    color: var(--color-primary-500);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.footer-contact a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-primary-500);
+    transition: width var(--transition-normal);
+}
+
+.footer-contact a:hover {
+    color: var(--color-primary-600);
+}
+
+.footer-contact a:hover::after {
+    width: 100%;
+}
+
+/* ========================================
+ * 动画关键帧
+ * ======================================== */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-12px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-6px);
+    }
+}
+
+/* 滚动触发动画 */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity var(--duration-slow) var(--ease-out),
+                transform var(--duration-slow) var(--ease-out);
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+ * 响应式布局
+ * ======================================== */
+
+@media (max-width: 1024px) {
+    .intro-page {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        text-align: center;
+    }
+
+    .intro-illustration {
+        order: -1;
+    }
+
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+    }
+
+    .nav-links {
+        gap: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .page-section {
+        padding: var(--space-lg) var(--space-sm);
+    }
+
+    .nav-bar {
+        padding: var(--space-4) var(--space-sm);
+    }
+
+    .nav-content {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .nav-links {
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: var(--font-size-sm);
+    }
+
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-title {
+        font-size: var(--font-size-2xl);
+        margin-bottom: var(--space-lg);
+    }
+
+    .catalog-item-title {
+        font-size: var(--font-size-lg);
+    }
+
+    .intro-text h2 {
+        font-size: var(--font-size-xl);
+    }
+
+    .intro-text {
+        font-size: var(--font-size-base);
+    }
+
+    .footer {
+        padding: var(--space-lg) var(--space-sm);
+    }
+}
+
+/* ========================================
+ * 打印样式
+ * ======================================== */
+
+@media print {
+    .nav-bar,
+    .scroll-hint {
+        display: none;
+    }
+
+    .page-section {
+        min-height: auto;
+        padding: var(--space-lg) 0;
+    }
+
+    body {
+        background: white;
+    }
+}

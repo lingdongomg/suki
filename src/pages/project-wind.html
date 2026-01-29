@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 与风同频 - Suki+Partners</title>
+    
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="../css/design-tokens.css">
+    <link rel="stylesheet" href="../css/project.css">
+    
+    <!-- 页面特定样式 -->
+    <style>
+        /* 五列布局 */
+        .five-column {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--space-sm);
+            max-width: 1200px;
+            margin: 0 auto var(--space-md);
+        }
+
+        .five-column img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+        }
+
+        .five-column img:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Logo区域 */
+        .logo-section {
+            text-align: center;
+            margin: var(--space-xl) auto;
+            max-width: 200px;
+        }
+
+        .logo-section img {
+            width: 100%;
+            transition: transform var(--transition-slow);
+        }
+
+        .logo-section img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 1024px) {
+            .five-column {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .five-column {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="nav-logo">Suki+Partners</div>
+            <div class="nav-links">
+                <a href="../index.html#home">首页</a>
+                <a href="../index.html#catalog">作品</a>
+                <a href="../index.html#about">关于</a>
+                <a href="../index.html#contact">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 项目内容 -->
+    <div class="project-container">
+        <!-- 项目头部 -->
+        <div class="project-header">
+            <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P19-与风同频.png" alt="与风同频" class="project-title-image">
+        </div>
+
+        <!-- P20 - 10张小图网格 -->
+        <div class="content-section">
+            <div class="five-column">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P20-1.png" alt="与风同频-1" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P20-2.png" alt="与风同频-2" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P20-3.png" alt="与风同频-3" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P20-4.png" alt="与风同频-4" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P20-5.png" alt="与风同频-5" loading="lazy">
+            </div>
+            <div class="five-column">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P20-6.png" alt="与风同频-6" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P20-7.png" alt="与风同频-7" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P20-8.png" alt="与风同频-8" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P20-9.png" alt="与风同频-9" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P20-10.png" alt="与风同频-10" loading="lazy">
+            </div>
+        </div>
+
+        <!-- P21 - 2张图片 -->
+        <div class="content-section">
+            <div class="two-column">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P21-1（只取上半张）.png" alt="与风同频-11" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P21-2.jpg" alt="与风同频-12" loading="lazy">
+            </div>
+        </div>
+
+        <!-- P22 - 6张图片 + Logo + 装饰 -->
+        <div class="content-section">
+            <div class="three-column">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P22-1.png" alt="与风同频-13" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P22-2.png" alt="与风同频-14" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P22-3.png" alt="与风同频-15" loading="lazy">
+            </div>
+            
+            <div class="logo-section">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P22-logo.png" alt="Logo">
+            </div>
+            
+            <div class="three-column">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P22-4.png" alt="与风同频-16" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P22-5.png" alt="与风同频-17" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P22-6.png" alt="与风同频-18" loading="lazy">
+            </div>
+            
+            <div class="decoration-image">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P22-插画.png" alt="" aria-hidden="true">
+            </div>
+        </div>
+
+        <!-- P23 - 7张图片网格 -->
+        <div class="content-section">
+            <div class="three-column">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P23-1.png" alt="与风同频-19" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P23-2.png" alt="与风同频-20" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P23-3.png" alt="与风同频-21" loading="lazy">
+            </div>
+            <div class="two-column">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P23-4.png" alt="与风同频-22" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P23-5.png" alt="与风同频-23" loading="lazy">
+            </div>
+            <div class="two-column">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P23-6.png" alt="与风同频-24" loading="lazy">
+                <img src="../new/SP网页图片素材/P19-P23（04与风同频）/P23-7.png" alt="与风同频-25" loading="lazy">
+            </div>
+        </div>
+    </div>
+
+    <!-- 作品导航 -->
+    <nav class="project-nav">
+        <a href="project-onroad.html" class="project-nav-link prev">
+            <span class="project-nav-arrow">←</span>
+            <span class="project-nav-title">03 在路上</span>
+        </a>
+        <a href="project-dance.html" class="project-nav-link next">
+            <span class="project-nav-title">05 起舞吧</span>
+            <span class="project-nav-arrow">→</span>
+        </a>
+    </nav>
+
+    <!-- 返回按钮 -->
+    <a href="../index.html#catalog" class="back-button">← 返回作品集</a>
+
+    <!-- 脚本 -->
+    <script src="../js/common.js"></script>
+</body>
+</html>

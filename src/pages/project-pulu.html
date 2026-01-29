@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 噗噜 - Suki+Partners</title>
+    
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="../css/design-tokens.css">
+    <link rel="stylesheet" href="../css/project.css">
+    
+    <!-- 页面特定样式 -->
+    <style>
+        /* 泡泡装饰 */
+        .bubble-decoration {
+            position: relative;
+            height: 100px;
+            margin-bottom: var(--space-lg);
+        }
+
+        .bubble {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            animation: float 3s ease-in-out infinite;
+            opacity: 0.7;
+            transition: opacity var(--transition-normal);
+        }
+
+        .bubble:hover {
+            opacity: 1;
+        }
+
+        .bubble-1 { left: 10%; top: 0; animation-delay: 0s; }
+        .bubble-2 { left: 30%; top: 30px; animation-delay: 0.5s; }
+        .bubble-3 { left: 50%; top: 10px; animation-delay: 1s; }
+        .bubble-4 { left: 70%; top: 40px; animation-delay: 1.5s; }
+        .bubble-5 { left: 85%; top: 20px; animation-delay: 2s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @media (max-width: 768px) {
+            .bubble {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="nav-logo">Suki+Partners</div>
+            <div class="nav-links">
+                <a href="../index.html#home">首页</a>
+                <a href="../index.html#catalog">作品</a>
+                <a href="../index.html#about">关于</a>
+                <a href="../index.html#contact">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 项目内容 -->
+    <div class="project-container">
+        <div class="project-header">
+            <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P9-泡泡.jpg" alt="噗噜" class="project-title-image">
+        </div>
+
+        <!-- P10 - 单张图 -->
+        <div class="content-section">
+            <div class="single-image">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P10.png" alt="噗噜-1" loading="lazy">
+            </div>
+        </div>
+
+        <!-- P11 - 多张图片网格 + 泡泡装饰 -->
+        <div class="content-section">
+            <div class="bubble-decoration">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-泡泡1.png" alt="" class="bubble bubble-1" aria-hidden="true">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-泡泡2.png" alt="" class="bubble bubble-2" aria-hidden="true">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-泡泡3.png" alt="" class="bubble bubble-3" aria-hidden="true">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-泡泡4.png" alt="" class="bubble bubble-4" aria-hidden="true">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-泡泡5.png" alt="" class="bubble bubble-5" aria-hidden="true">
+            </div>
+            
+            <div class="two-column">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-1.png" alt="噗噜-2" loading="lazy">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-2.png" alt="噗噜-3" loading="lazy">
+            </div>
+            <div class="three-column">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-3.png" alt="噗噜-4" loading="lazy">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-4.png" alt="噗噜-5" loading="lazy">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-5.png" alt="噗噜-6" loading="lazy">
+            </div>
+            <div class="two-column">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-6.png" alt="噗噜-7" loading="lazy">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P11-7.png" alt="噗噜-8" loading="lazy">
+            </div>
+        </div>
+
+        <!-- P12 - 装饰图片 -->
+        <div class="content-section">
+            <div class="three-column">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P12-1.png" alt="装饰-1" loading="lazy">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P12-2.png" alt="装饰-2" loading="lazy">
+                <img src="../new/SP网页图片素材/P9-P12（02噗噜）/P12-3（需裁剪）.png" alt="装饰-3" loading="lazy">
+            </div>
+        </div>
+    </div>
+
+    <!-- 作品导航 -->
+    <nav class="project-nav">
+        <a href="project-tree.html" class="project-nav-link prev">
+            <span class="project-nav-arrow">←</span>
+            <span class="project-nav-title">01 树</span>
+        </a>
+        <a href="project-onroad.html" class="project-nav-link next">
+            <span class="project-nav-title">03 在路上</span>
+            <span class="project-nav-arrow">→</span>
+        </a>
+    </nav>
+
+    <!-- 返回按钮 -->
+    <a href="../index.html#catalog" class="back-button">← 返回作品集</a>
+
+    <!-- 脚本 -->
+    <script src="../js/common.js"></script>
+</body>
+</html>
